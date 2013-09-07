@@ -1,0 +1,153 @@
+// The "Mark" class.
+import java.awt.*;
+import hsa.Console;
+
+public class Mark
+{
+    static Console c;           // The output console
+
+    public static void main (String[] args)
+    {
+	c = new Console ();
+	String lookfor;
+	int mark[] = new int [5];
+	String name[] = new String [5];
+	int choice;
+	int chose1;
+	int temp, forever = 1;
+	String flag = "up";
+	String temp1;
+
+
+
+	c.println ("What would you like to do?");
+
+	c.println ();
+	c.println ("1) Enter Class Marks");
+	c.println ("2) Exit");
+	c.print ("Choose 1 or 2: ");
+
+	choice = c.readInt ();
+	c.clear ();
+
+	if (choice == 1)
+	{
+	    for (int abc = 0 ; abc < 5 ; abc = abc + 1)
+
+		{
+		    c.println ("What is you name?");
+		    name [abc] = c.readLine ();
+		    c.println ("What is you mark?");
+		    mark [abc] = c.readInt ();
+		    c.clear ();
+		}
+	    while (forever < 3)
+	    {
+		c.println ();
+		c.println ("         Menu");
+		c.println ();
+		c.println ("2) Show results Sorted");
+		c.println ("3) Search for specific student");
+		c.println ("4) Exit");
+		c.println ("Choose for 2 to 4");
+		chose1 = c.readInt ();
+		c.clear ();
+
+
+		if (chose1 == 2)
+
+
+
+		    {
+			while (flag.equalsIgnoreCase ("up"))
+			{
+			    flag = "down";
+			    for (int xyz = 0 ; xyz < 4 ; xyz = xyz + 1)
+			    {
+				// compare info in cells 1 and 2
+				if (mark [xyz] > mark [xyz + 1])
+				{
+				    flag = "up";
+				    //Move first cell into temporary chair
+				    temp = mark [xyz];
+				    //Second cell moves into the first cell
+				    mark [xyz] = mark [xyz + 1];
+				    //Move from temporary chair to the second cell
+				    mark [xyz + 1] = temp;
+				    temp1 = name [xyz];
+				    //Second cell moves into the first cell
+				    name [xyz] = name [xyz + 1];
+				    //Move from temporary chair into the second cell
+				    name [xyz + 1] = temp1;
+				}
+
+			    }
+			}
+
+
+			c.print ("Name");
+			c.println ("     Mark");
+			c.println ();
+
+			for (int yc = 0 ; yc < 5 ; yc = yc + 1)
+			{
+			    c.print (name [yc], 5);
+			    c.println (mark [yc], 10);
+			}
+
+		    }
+
+		else if (chose1 == 3)
+		{
+
+		    c.println ("Who are you looking for?: <Enter>");
+		    lookfor = c.readString ();
+		    c.clear ();
+
+		    for (int ybc = 0 ; ybc < 5 ; ybc += 1)
+		    {
+			if (lookfor.equalsIgnoreCase (name [ybc]))
+			{
+			    {
+				c.println ("Sudent Name: " + (name [ybc]));
+				c.println ("Sudent Mark: " + (mark [ybc]));
+
+
+
+			    }
+
+
+			}
+		    }
+		}
+
+		else if (chose1 == 4)
+		{
+		    System.exit (0);
+		}
+
+
+		else
+		{
+
+		}
+	    }
+	}
+
+
+	else
+	{
+	    System.exit (0);
+	}
+
+
+
+
+
+
+
+	// Place your program here.  'c' is the output console
+    } // main method
+} // Mark class
+
+
