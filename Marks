@@ -17,9 +17,7 @@ public class Mark
 	int temp, forever = 1;
 	String flag = "up";
 	String temp1;
-
-
-
+	
 	c.println ("What would you like to do?");
 
 	c.println ();
@@ -53,10 +51,7 @@ public class Mark
 		chose1 = c.readInt ();
 		c.clear ();
 
-
 		if (chose1 == 2)
-
-
 
 		    {
 			while (flag.equalsIgnoreCase ("up"))
@@ -111,11 +106,7 @@ public class Mark
 			    {
 				c.println ("Sudent Name: " + (name [ybc]));
 				c.println ("Sudent Mark: " + (mark [ybc]));
-
-
-
 			    }
-
 
 			}
 		    }
@@ -139,11 +130,6 @@ public class Mark
 	{
 	    System.exit (0);
 	}
-
-
-
-
-
 
 
 	// Place your program here.  'c' is the output console
