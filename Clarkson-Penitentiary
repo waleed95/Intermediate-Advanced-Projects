@@ -1,0 +1,427 @@
+// The "Bluejays" class.
+import java.awt.*;
+import hsa.Console;
+
+public class Bluejays
+{
+    static Console c;           // The output console
+
+    public static void main (String[] args)
+    {
+	c = new Console ();
+
+	//Variables
+	String flag = "up";
+	int agetemp;
+	String nametemp;
+	String postemp;
+	double avgtemp;
+	String lookfor;
+
+	Font standardstrings = new Font ("Courier", Font.PLAIN, 14);
+	c.setFont (standardstrings);
+
+	//Intro
+	c.println ("Welcome to the Bluejays Database!");
+	c.println ();
+	c.print ("How many players would you like to add? ");
+	int players = c.readInt ();
+	c.clear ();
+
+	//Raw (Original) Data Variables
+	String nameo[] = new String [players];
+	String poso[] = new String [players];
+	int ageo[] = new int [players];
+	double avgo[] = new double [players];
+
+	//Sort Data Variables
+	String name[] = new String [players];
+	String pos[] = new String [players];
+	int age[] = new int [players];
+	double avg[] = new double [players];
+
+	// Input Array info for raw/sort data
+	for (int abc = 0 ; abc < players ; abc++)
+	{
+	    c.println ("Player (" + (abc + 1) + ")");
+	    c.println ();
+
+	    c.print ("Enter Name: ");
+	    nameo [abc] = c.readLine ();
+	    name [abc] = nameo [abc];
+	    c.print ("Enter Age: ");
+	    ageo [abc] = c.readInt ();
+	    age [abc] = ageo [abc];
+	    c.print ("Enter Batting Average: ");
+	    avgo [abc] = c.readDouble ();
+	    avg [abc] = avgo [abc];
+	    c.print ("Enter Position: ");
+	    poso [abc] = c.readLine ();
+	    pos [abc] = poso [abc];
+	    c.clear ();
+	}
+
+	//Main loop for returning to menu
+	while (true)
+	{
+	    //Main Menu
+	    c.println ("         Menu");
+	    c.println ();
+	    c.println ("(1) Display Raw Data");
+	    c.println ("(2) View Sorted Data");
+	    c.println ("(3) Search");
+	    c.println ("(4) Exit");
+	    c.println ();
+	    c.print ("What would you like to do? ");
+	    int choice = c.readInt ();
+	    c.clear ();
+
+	    //Display Raw Data
+	    if (choice == 1)
+	    {
+
+		int y = 14;
+
+		c.print ("Name:", 20);
+		c.print ("Age:", 10);
+		c.print ("Batting Average:", 20);
+		c.println ("Postion:");
+
+		for (int yc = 0 ; yc < players ; yc = yc + 1)
+		{
+		    c.print (ageo [yc], 22);
+		    c.println (avgo [yc], 12);
+		    c.drawString (nameo [yc], 0, y = y + 20);
+		    c.drawString (poso [yc], 400, y);
+		    c.drawLine (0, (20 * (yc + 1)), 550, (20 * (yc + 1)));
+		}
+		c.drawLine (0, (20 * (players + 1)), 550, (20 * (players + 1)));
+		c.drawLine (0, 20, 550, 20);
+		c.drawLine (150, 0, 150, (((20) * players) + 18));
+		c.drawLine (230, 0, 230, (((20) * players) + 18));
+		c.drawLine (390, 0, 390, (((20) * players) + 18));
+		c.drawLine (550, 0, 550, (((20) * players) + 18));
+	    }
+	    //Sorting Menu
+	    else if (choice == 2)
+	    {
+		c.println ("    Sorting Options");
+		c.println ();
+		c.println ("(1) Age Ascending");
+		c.println ("(2) Age Descending");
+		c.println ("(3) Average Ascending");
+		c.println ("(4) Average Descending");
+		c.println ("(5) Name Ascending");
+		c.println ("(6) Name Descending");
+		c.println ("(7) Position Ascending");
+		c.println ("(8) Position Descending");
+		c.println ();
+		c.print ("How would you like to proceed? ");
+		int sortchoice = c.readInt ();
+		// Age Ascending
+		if (sortchoice == 1)
+		{
+		    flag = "up";
+		    while (flag.equalsIgnoreCase ("up"))
+		    {
+			flag = "down";
+			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
+			{
+			    if (age [xyz] > age [xyz + 1])
+			    {
+				flag = "up";
+				agetemp = age [xyz];
+				age [xyz] = age [xyz + 1];
+				age [xyz + 1] = agetemp;
+				nametemp = name [xyz];
+				name [xyz] = name [xyz + 1];
+				name [xyz + 1] = nametemp;
+				avgtemp = avg [xyz];
+				avg [xyz] = avg [xyz + 1];
+				avg [xyz + 1] = avgtemp;
+				postemp = pos [xyz];
+				pos [xyz] = pos [xyz + 1];
+				pos [xyz + 1] = postemp;
+			    }
+			}
+		    }
+		}
+		// Age Descending
+		else if (sortchoice == 2)
+		{
+		    flag = "up";
+		    while (flag.equalsIgnoreCase ("up"))
+		    {
+			flag = "down";
+			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
+			{
+			    if (age [xyz] < age [xyz + 1])
+			    {
+				flag = "up";
+				agetemp = age [xyz];
+				age [xyz] = age [xyz + 1];
+				age [xyz + 1] = agetemp;
+				nametemp = name [xyz];
+				name [xyz] = name [xyz + 1];
+				name [xyz + 1] = nametemp;
+				avgtemp = avg [xyz];
+				avg [xyz] = avg [xyz + 1];
+				avg [xyz + 1] = avgtemp;
+				postemp = pos [xyz];
+				pos [xyz] = pos [xyz + 1];
+				pos [xyz + 1] = postemp;
+			    }
+			}
+		    }
+		}
+		// Average Ascending
+		else if (sortchoice == 3)
+		{
+		    flag = "up";
+		    while (flag.equalsIgnoreCase ("up"))
+		    {
+			flag = "down";
+			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
+			{
+			    if (avg [xyz] > avg [xyz + 1])
+			    {
+				flag = "up";
+				agetemp = age [xyz];
+				age [xyz] = age [xyz + 1];
+				age [xyz + 1] = agetemp;
+				nametemp = name [xyz];
+				name [xyz] = name [xyz + 1];
+				name [xyz + 1] = nametemp;
+				avgtemp = avg [xyz];
+				avg [xyz] = avg [xyz + 1];
+				avg [xyz + 1] = avgtemp;
+				postemp = pos [xyz];
+				pos [xyz] = pos [xyz + 1];
+				pos [xyz + 1] = postemp;
+			    }
+			}
+		    }
+		}
+		// Age Descending
+		else if (sortchoice == 4)
+		{
+		    flag = "up";
+		    while (flag.equalsIgnoreCase ("up"))
+		    {
+			flag = "down";
+			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
+			{
+			    if (avg [xyz] < avg [xyz + 1])
+			    {
+				flag = "up";
+				agetemp = age [xyz];
+				age [xyz] = age [xyz + 1];
+				age [xyz + 1] = agetemp;
+				nametemp = name [xyz];
+				name [xyz] = name [xyz + 1];
+				name [xyz + 1] = nametemp;
+				avgtemp = avg [xyz];
+				avg [xyz] = avg [xyz + 1];
+				avg [xyz + 1] = avgtemp;
+				postemp = pos [xyz];
+				pos [xyz] = pos [xyz + 1];
+				pos [xyz + 1] = postemp;
+			    }
+			}
+		    }
+		}
+		// Name Ascending
+		else if (sortchoice == 5)
+		{
+		    flag = "up";
+		    while (flag.equalsIgnoreCase ("up"))
+		    {
+			flag = "down";
+			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
+			{
+			    int result = name [xyz].compareTo (name [xyz + 1]);
+			    if (result > 0)
+			    {
+				flag = "up";
+				agetemp = age [xyz];
+				age [xyz] = age [xyz + 1];
+				age [xyz + 1] = agetemp;
+				nametemp = name [xyz];
+				name [xyz] = name [xyz + 1];
+				name [xyz + 1] = nametemp;
+				avgtemp = avg [xyz];
+				avg [xyz] = avg [xyz + 1];
+				avg [xyz + 1] = avgtemp;
+				postemp = pos [xyz];
+				pos [xyz] = pos [xyz + 1];
+				pos [xyz + 1] = postemp;
+			    }
+			}
+		    }
+		}
+		// Name Descending
+		else if (sortchoice == 6)
+		{
+		    flag = "up";
+		    while (flag.equalsIgnoreCase ("up"))
+		    {
+			flag = "down";
+			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
+			{
+			    int result = name [xyz].compareTo (name [xyz + 1]);
+			    if (result < 0)
+			    {
+				flag = "up";
+				agetemp = age [xyz];
+				age [xyz] = age [xyz + 1];
+				age [xyz + 1] = agetemp;
+				nametemp = name [xyz];
+				name [xyz] = name [xyz + 1];
+				name [xyz + 1] = nametemp;
+				avgtemp = avg [xyz];
+				avg [xyz] = avg [xyz + 1];
+				avg [xyz + 1] = avgtemp;
+				postemp = pos [xyz];
+				pos [xyz] = pos [xyz + 1];
+				pos [xyz + 1] = postemp;
+			    }
+			}
+		    }
+		}
+		// Position Ascending
+		else if (sortchoice == 7)
+		{
+		    flag = "up";
+		    while (flag.equalsIgnoreCase ("up"))
+		    {
+			flag = "down";
+			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
+			{
+			    int result = pos [xyz].compareTo (pos [xyz + 1]);
+			    if (result > 0)
+			    {
+				flag = "up";
+				agetemp = age [xyz];
+				age [xyz] = age [xyz + 1];
+				age [xyz + 1] = agetemp;
+				nametemp = name [xyz];
+				name [xyz] = name [xyz + 1];
+				name [xyz + 1] = nametemp;
+				avgtemp = avg [xyz];
+				avg [xyz] = avg [xyz + 1];
+				avg [xyz + 1] = avgtemp;
+				postemp = pos [xyz];
+				pos [xyz] = pos [xyz + 1];
+				pos [xyz + 1] = postemp;
+
+			    }
+			}
+		    }
+		}
+		// Position Descending
+		else if (sortchoice == 8)
+		{
+		    flag = "up";
+		    while (flag.equalsIgnoreCase ("up"))
+		    {
+			flag = "down";
+			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
+			{
+			    int result = pos [xyz].compareTo (pos [xyz + 1]);
+			    if (result < 0)
+			    {
+				flag = "up";
+				agetemp = age [xyz];
+				age [xyz] = age [xyz + 1];
+				age [xyz + 1] = agetemp;
+				nametemp = name [xyz];
+				name [xyz] = name [xyz + 1];
+				name [xyz + 1] = nametemp;
+				avgtemp = avg [xyz];
+				avg [xyz] = avg [xyz + 1];
+				avg [xyz + 1] = avgtemp;
+				postemp = pos [xyz];
+				pos [xyz] = pos [xyz + 1];
+				pos [xyz + 1] = postemp;
+
+			    }
+			}
+		    }
+		}
+		c.clear ();
+		int y = 14;
+		c.print ("Name:", 20);
+		c.print ("Age:", 10);
+		c.print ("Batting Average:", 20);
+		c.println ("Postion:");
+		for (int yc = 0 ; yc < players ; yc = yc + 1)
+		{
+		    c.print (age [yc], 22);
+		    c.println (avg [yc], 12);
+		    c.drawString (name [yc], 0, y = y + 20);
+		    c.drawString (pos [yc], 400, y);
+		    c.drawLine (0, (20 * (yc + 1)), 550, (20 * (yc + 1)));
+		}
+		c.drawLine (0, (20 * (players + 1)), 550, (20 * (players + 1)));
+		c.drawLine (0, 20, 550, 20);
+		c.drawLine (150, 0, 150, (((20) * players) + 18));
+		c.drawLine (230, 0, 230, (((20) * players) + 18));
+		c.drawLine (390, 0, 390, (((20) * players) + 18));
+		c.drawLine (550, 0, 550, (((20) * players) + 18));
+
+	    }
+	    //Search
+	    else if (choice == 3)
+	    {
+		c.print ("Please enter name of the player you'd like to view: ");
+		lookfor = c.readString ();
+		c.clear ();
+
+		for (int yc = 0 ; yc < players ; yc++)
+		{
+		    if (lookfor.equalsIgnoreCase (nameo [yc]))
+		    {
+			{
+			    int y = 14;
+			    c.print ("Name:", 20);
+			    c.print ("Age:", 10);
+			    c.print ("Batting Average:", 20);
+			    c.println ("Postion:");
+			    c.print (ageo [yc], 22);
+			    c.println (avgo [yc], 12);
+			    c.drawString (nameo [yc], 0, y = y + 20);
+			    c.drawString (poso [yc], 400, y);
+			    c.drawLine (0, (20 * (yc + 1)), 550, (20 * (yc + 1)));
+			}
+			c.drawLine (0, (20 * (players + 1)), 550, (20 * (players + 1)));
+			c.drawLine (0, 20, 550, 20);
+			c.drawLine (150, 0, 150, (((20) * players) + 18));
+			c.drawLine (230, 0, 230, (((20) * players) + 18));
+			c.drawLine (390, 0, 390, (((20) * players) + 18));
+			c.drawLine (550, 0, 550, (((20) * players) + 18));
+
+		    }
+		}
+	    }
+	    //Exit
+	    else if (choice == 4)
+	    {
+		System.exit (0);
+	    }
+	    //Invalid Option Selected
+	    else
+	    {
+		c.clear ();
+		c.println ("Error: Invalid Option Selected");
+	    }
+	    //Reset
+	    c.drawString ("Press <ENTER> to return to menu", 390, 500);
+	    c.setCursorVisible (false);
+	    char menu = c.readChar ();
+	    c.setCursorVisible (true);
+	    c.clear ();
+	}
+    }
+} // Place your program here.  'c' is the output console
+// main method
+// Bluejays class
