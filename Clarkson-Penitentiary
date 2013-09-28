@@ -1,427 +1,472 @@
-// The "Bluejays" class.
-import java.awt.*;
-import hsa.Console;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
-public class Bluejays
-{
-    static Console c;           // The output console
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
-    public static void main (String[] args)
-    {
-	c = new Console ();
 
-	//Variables
-	String flag = "up";
-	int agetemp;
-	String nametemp;
-	String postemp;
-	double avgtemp;
-	String lookfor;
+public class Final {
 
-	Font standardstrings = new Font ("Courier", Font.PLAIN, 14);
-	c.setFont (standardstrings);
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run(){
 
-	//Intro
-	c.println ("Welcome to the Bluejays Database!");
-	c.println ();
-	c.print ("How many players would you like to add? ");
-	int players = c.readInt ();
-	c.clear ();
+		final JFrame  mainframe = new JFrame("Criminal Database");
+		final JFrame  enterdataframe = new JFrame("Make New Entry");
+		enterdataframe.setSize(600,400);
+		
+		mainframe.getContentPane().setLayout(new BorderLayout());
+		
+		mainframe.setSize(800,600);
+		mainframe.setVisible(true);
+		mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Image logo = Toolkit.getDefaultToolkit().getImage("C:/Users/Samroze-Waleed/workspace/Test/src\\2.jpg");
+		Image background = Toolkit.getDefaultToolkit().getImage("C:/Users/Samroze-Waleed/workspace/Test/src\\1.jpg");
+		mainframe.setIconImage(logo);
+		
+		final JPanel loginpanel = new JPanel(new GridBagLayout());
+		loginpanel.setSize(800,300);
+		final GridBagConstraints c = new GridBagConstraints();
+		final JPanel loginpanel1 = new JPanel(new GridBagLayout());
+		loginpanel1.setSize(800,300);
+		final GridBagConstraints v = new GridBagConstraints();
 
-	//Raw (Original) Data Variables
-	String nameo[] = new String [players];
-	String poso[] = new String [players];
-	int ageo[] = new int [players];
-	double avgo[] = new double [players];
+		
+		final JPanel menupanel2 = new JPanel(new GridBagLayout());
+		menupanel2.setSize(200,600);
+		final JPanel menupanel1 = new JPanel(new GridBagLayout());
+		menupanel1.setSize(600,600);
+		final JPanel menupanel = new JPanel(new GridBagLayout());
+		menupanel.setSize(800,600);
+	
+		
+		///////LOGIN SCREEN//////////////////////////////////////////////////////////////////
+		mainframe.add(loginpanel, BorderLayout.NORTH);
+		mainframe.add(loginpanel1, BorderLayout.SOUTH);
+		loginpanel.setBackground(Color.BLACK);
+		loginpanel1.setBackground(Color.BLACK);
+		final JLabel bl  = new JLabel("      ");
+		final JLabel bl1  = new JLabel("     ");
+		final JLabel bl2  = new JLabel("      ");
+		final JLabel bl3  = new JLabel("     ");
+		final JLabel bl4 = new JLabel("       ");
+		final JLabel bl5 = new JLabel("    ");
+		final JLabel bl6 = new JLabel("    ");
+		final JLabel bl7 = new JLabel("    ");
+		final JLabel bl8 = new JLabel("    ");
+		final JLabel bl9 = new JLabel("    ");
+		final JLabel bl10 = new JLabel("    ");
+		final JLabel bl11 = new JLabel("    ");
+		final JLabel bl12 = new JLabel("    ");
+		final JLabel bl13 = new JLabel("    ");
+		
+		JLabel userlabel  = new JLabel("Usename ");
+		JLabel passlabel = new JLabel("Password ");
+		JLabel picLabel = new JLabel(new ImageIcon( background ));
+		userlabel.setForeground(Color.white);
+		passlabel.setForeground(Color.white);
+		
+		final JTextField usertext = new JTextField(10);
+		final JPasswordField passtext = new JPasswordField(10);
+		JButton login = new JButton("Login");
+		
+		c.insets=new Insets (5,5,5,5);
+		c.gridx = 0;
+		c.gridy = 0;
+		loginpanel.add(picLabel,c);
+		c.anchor=GridBagConstraints.ABOVE_BASELINE;
+		c.gridx=0;
+		c.gridy=0;
+		loginpanel1.add(userlabel,c);
+		c.gridx=0;
+		c.gridy=1;
+		loginpanel1.add(passlabel,c);
+		c.gridx=1;
+		c.gridy=0;
+		loginpanel1.add(usertext,c);
+		c.gridx=1;
+		c.gridy=1;
+		loginpanel1.add(passtext,c);
+		c.gridx=1;
+		c.gridy=2;
+		loginpanel1.add(login,c);
+		c.gridx=1;
+		c.gridy=3;
+		loginpanel1.add(bl,c);
+		c.gridx=1;
+		c.gridy=4;
+		loginpanel1.add(bl1,c);
+		c.gridx=1;
+		c.gridy=5;
+		loginpanel1.add(bl2,c);
+		c.gridx=1;
+		c.gridy=6;
+		loginpanel1.add(bl3,c);
+		c.gridx=1;
+		c.gridy=7;
+		loginpanel1.add(bl4,c);
+		c.gridx=1;
+		c.gridy=8;
+		loginpanel1.add(bl5,c);
+		
+		//////////END OF LOGIN SCREEN/MAIN MENU//////////////////////////////////////////////////////
+		login.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e1) {
+				loginpanel.setVisible(false);
+				loginpanel1.setVisible(false);
+				menupanel2.setBackground(Color.BLACK);
+				menupanel1.setBackground(Color.BLACK);
+				mainframe.add(menupanel2);
+				mainframe.add(menupanel1);
+				
+			
+		/////////ESTABLISHING TABLE////////////////////////////////////////////////////////////////////
+				int lines1 = 0;
+				int lines = 0;
+				BufferedReader br1 = null;
+				try {
+				  br1 = new BufferedReader(new FileReader("C:/Users/Samroze-Waleed/workspace/Test/src\\Data.txt"));
+				} catch (FileNotFoundException e4) {
+					// TODO Auto-generated catch block
+					e4.printStackTrace();
+				}
+				try {
+					
+					while (br1.readLine() != null) {
+						lines1++;
+					}
 
-	//Sort Data Variables
-	String name[] = new String [players];
-	String pos[] = new String [players];
-	int age[] = new int [players];
-	double avg[] = new double [players];
+				} catch (IOException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				}
+				TableModel model = new DefaultTableModel(lines1, 7) {
+					public Class getColumnClass(int column) {
+						Class returnValue;
+						if ((column >= 0) && (column < getColumnCount())) {
+							returnValue = getValueAt(0, column).getClass();
+						} else {
+							returnValue = Object.class;
+						}
+						return returnValue;
+					}
+				};
 
-	// Input Array info for raw/sort data
-	for (int abc = 0 ; abc < players ; abc++)
-	{
-	    c.println ("Player (" + (abc + 1) + ")");
-	    c.println ();
+				final JTable data = new JTable(model);
+				final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
+				data.setRowSorter(sorter);
+				data.setPreferredScrollableViewportSize(new Dimension(550, 300));
+				data.setFillsViewportHeight(true);
+				data.getColumnModel().getColumn(0).setHeaderValue("ID");
+				data.getColumnModel().getColumn(1).setHeaderValue("First Name");
+				data.getColumnModel().getColumn(2).setHeaderValue("Last Name");
+				data.getColumnModel().getColumn(3).setHeaderValue("Gender");
+				data.getColumnModel().getColumn(4).setHeaderValue("Crime");
+				data.getColumnModel().getColumn(5).setHeaderValue("Country");
+				data.getColumnModel().getColumn(6).setHeaderValue("Year");
+				final JScrollPane dts= new JScrollPane(data);
+				
+				
+				//tells computer to look at a text file
+				//tells it name & path of particular file
 
-	    c.print ("Enter Name: ");
-	    nameo [abc] = c.readLine ();
-	    name [abc] = nameo [abc];
-	    c.print ("Enter Age: ");
-	    ageo [abc] = c.readInt ();
-	    age [abc] = ageo [abc];
-	    c.print ("Enter Batting Average: ");
-	    avgo [abc] = c.readDouble ();
-	    avg [abc] = avgo [abc];
-	    c.print ("Enter Position: ");
-	    poso [abc] = c.readLine ();
-	    pos [abc] = poso [abc];
-	    c.clear ();
+				try {
+
+					BufferedReader br = new BufferedReader(new FileReader("C:/Users/Samroze-Waleed/workspace/Test/src\\Data.txt"));
+					while (br.readLine() != null) {
+						lines++;
+					}
+
+					BufferedReader fileinput = new BufferedReader(new FileReader("C:/Users/Samroze-Waleed/workspace/Test/src\\Data.txt"));
+					//loop through the file one line at a time
+
+					for( int x=0; x<lines; x=x+1){
+
+						//read the current line
+						String curline = fileinput.readLine();
+						String wordarray [] = curline.split(",");
+						for (int i = 0; i<wordarray.length;i++){
+							data.setValueAt(wordarray[i], x,i);						            
+						}						            
+					}
+					
+				} catch (FileNotFoundException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+		/////////FINISHED ESTABLISHING TABLE/ADDING COMPONENTS TO MAIN PANEL////////////////////////
+				JButton enterdat = new JButton("Make Entry");
+				final JButton search = new JButton("Search");
+				final JButton restore = new JButton("Restore");
+				final JTextField filterText = new JTextField(51);
+				
+				JLabel s  = new JLabel("                            ");
+				c.insets=new Insets (1,12,7,12);
+				c.gridx=0;
+				c.gridy=0;
+				menupanel1.add(s,c);
+				c.gridx=1;
+				c.gridy=0;
+				menupanel1.add(bl1,c);
+				c.gridx=2;
+				c.gridy=0;
+				menupanel1.add(bl2,c);
+				c.gridx=3;
+				c.gridy=0;
+				menupanel1.add(dts,c);
+				c.gridx=3;
+				c.gridy=1;
+				menupanel1.add(bl3,c);
+				c.gridx=3;
+				c.gridy=2;
+				menupanel1.add(filterText,c);
+				c.insets=new Insets (13,4,13,4);
+				c.gridx=0;
+				c.gridy=0;
+				menupanel2.add(bl7,c);
+				c.gridx=0;
+				c.gridy=1;
+				menupanel2.add(bl5,c);
+				c.gridx=0;
+				c.gridy=2;
+				menupanel2.add(bl6,c);
+				c.gridx=0;
+				c.gridy=3;
+				menupanel2.add(bl8,c);
+				c.gridx=0;
+				c.gridy=4;
+				menupanel2.add(bl9,c);
+				c.gridx=0;
+				c.gridy=5;
+				menupanel2.add(bl10,c);
+				c.gridx=0;
+				c.gridy=6;
+				menupanel2.add(enterdat,c);
+				c.gridx=0;
+				c.gridy=7;
+				menupanel2.add(search,c);
+				restore.setVisible(false);
+				c.gridx=0;
+				c.gridy=7;
+				menupanel2.add(restore,c);
+				
+				///////////////////////////SEARCH ACTION//////////////////////////////////////////////////////////////////////////
+				search.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						String text = filterText.getText();
+						sorter.setRowFilter(RowFilter.regexFilter(text));
+						search.setVisible(false);
+						restore.setVisible(true);
+						restore.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								
+							int lines2 = 0;
+							
+								try {
+
+									BufferedReader br5 = new BufferedReader(new FileReader("C:/Users/Samroze-Waleed/workspace/Test/src\\Data.txt"));
+									while (br5.readLine() != null) {
+										lines2++;
+									}
+
+									BufferedReader nput = new BufferedReader(new FileReader("C:/Users/Samroze-Waleed/workspace/Test/src\\Data.txt"));
+									//loop through the file one line at a time
+
+									for( int p=0; p<lines2; p=p+1){
+
+										//read the current line
+										String ine = nput.readLine();
+										String array [] = ine.split(",");
+										for (int f = 0; f<array.length;f++){
+											data.setValueAt(array[f], p,f);						            
+										}						            
+									}
+									
+								} catch (FileNotFoundException e2) {
+									// TODO Auto-generated catch block
+									e2.printStackTrace();
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+							}
+						});
+							
+					}
+				});
+				
+				///////////////////////////SEARCH ACTION END//////////////////////////////////////////////////////////////////////////
+				///////////////////////////ENTERDAT ACTION//////////////////////////////////////////////////////////////////////////
+				final JPanel enterdatapanel = new JPanel(new GridBagLayout());
+				enterdat.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e1) {
+						
+						final JLabel IDl  = new JLabel("ID ");
+						final JLabel namefl  = new JLabel("First Name ");
+						final JLabel namell  = new JLabel("Last Name ");
+						final JLabel genderl  = new JLabel("Gender ");
+						final JLabel crimel = new JLabel("Crime ");
+						final JLabel countryl = new JLabel("Country ");
+						final JLabel yearl = new JLabel ("Year ");
+
+						IDl.setForeground(Color.white);
+						genderl.setForeground(Color.white);
+						countryl.setForeground(Color.white);
+						namefl.setForeground(Color.white);
+						namell.setForeground(Color.white);
+						crimel.setForeground(Color.white);
+						yearl.setForeground(Color.white);
+
+						final JTextField IDt = new JTextField(30);
+						final JTextField nameft = new JTextField(30);
+						final JTextField namelt = new JTextField(30);
+						final JTextField gendert = new JTextField(30);
+						final JTextField crimet = new JTextField(30);
+						final JTextField countryt = new JTextField(30);
+						final JTextField yeart = new JTextField(30);
+						final JButton addperson = new JButton("Add");
+						
+						// CODE TO RUN WHEN BUTTON CLICKED GOES HERE
+						enterdataframe.setVisible(true);
+						enterdataframe.add(enterdatapanel);
+						enterdatapanel.setBackground(Color.BLACK);
+						c.insets=new Insets (4,4,4,4);
+						c.anchor=GridBagConstraints.BASELINE;
+						c.gridx = 0;
+						c.gridy = 0;
+
+						enterdatapanel.add(IDl,c);
+						c.gridx = 0;
+						c.gridy = 1;
+
+						enterdatapanel.add(namefl,c);
+						c.gridx = 0;
+						c.gridy = 2;
+
+						enterdatapanel.add(namell,c);
+						c.gridx = 0;
+						c.gridy = 3;
+
+						enterdatapanel.add(genderl,c);
+						c.gridx = 0;
+						c.gridy = 4;
+
+						enterdatapanel.add(crimel,c);
+						c.gridx = 0;
+						c.gridy = 5;
+
+						enterdatapanel.add(countryl,c);
+						c.gridx = 0;
+						c.gridy = 6;
+
+						enterdatapanel.add(yearl,c);
+
+						c.gridx = 1;
+						c.gridy = 0;
+
+						enterdatapanel.add(IDt,c);
+						c.gridx = 1;
+						c.gridy = 1;
+
+						enterdatapanel.add(nameft,c);
+						c.gridx = 1;
+						c.gridy = 2;
+						enterdatapanel.add(namelt,c);
+						c.gridx = 1;
+						c.gridy = 3;
+						enterdatapanel.add(gendert,c);
+						c.gridx = 1;
+						c.gridy = 4;
+						enterdatapanel.add(crimet,c);
+						c.gridx = 1;
+						c.gridy = 5;
+						enterdatapanel.add(countryt,c);
+						c.gridx = 1;
+						c.gridy = 6;
+						enterdatapanel.add(yeart,c);
+						c.gridx = 1;
+						c.gridy = 7;
+						enterdatapanel.add(addperson,c);
+
+
+						addperson.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e1) {
+								// CODE TO RUN WHEN BUTTON CLICKED GOES HERE
+								enterdataframe.dispose();
+
+								final String ID = IDt.getText();
+								final String namef = nameft.getText();
+								final String namel = namelt.getText();
+								final String gender = gendert.getText();
+								final String crime = crimet.getText();
+								final String country = countryt.getText();
+								final String year = yeart.getText();
+								nameft.setText("");
+								IDt.setText("");
+								namelt.setText("");
+								gendert.setText("");
+								countryt.setText("");
+
+								crimet.setText("");
+								yeart.setText("");
+								BufferedWriter fileoutput;
+
+								try {
+									fileoutput = new BufferedWriter (new FileWriter("C:/Users/Samroze-Waleed/workspace/Test/src\\Data.txt",true));
+
+									fileoutput.newLine();
+									fileoutput.write(ID+","+namef+","+namel+","+gender+","+crime+","+country+","+year);
+									fileoutput.close();
+
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+
+							}});
+					}});
+
+			}});
+
+		
+			}
+		});
 	}
 
-	//Main loop for returning to menu
-	while (true)
-	{
-	    //Main Menu
-	    c.println ("         Menu");
-	    c.println ();
-	    c.println ("(1) Display Raw Data");
-	    c.println ("(2) View Sorted Data");
-	    c.println ("(3) Search");
-	    c.println ("(4) Exit");
-	    c.println ();
-	    c.print ("What would you like to do? ");
-	    int choice = c.readInt ();
-	    c.clear ();
-
-	    //Display Raw Data
-	    if (choice == 1)
-	    {
-
-		int y = 14;
-
-		c.print ("Name:", 20);
-		c.print ("Age:", 10);
-		c.print ("Batting Average:", 20);
-		c.println ("Postion:");
-
-		for (int yc = 0 ; yc < players ; yc = yc + 1)
-		{
-		    c.print (ageo [yc], 22);
-		    c.println (avgo [yc], 12);
-		    c.drawString (nameo [yc], 0, y = y + 20);
-		    c.drawString (poso [yc], 400, y);
-		    c.drawLine (0, (20 * (yc + 1)), 550, (20 * (yc + 1)));
-		}
-		c.drawLine (0, (20 * (players + 1)), 550, (20 * (players + 1)));
-		c.drawLine (0, 20, 550, 20);
-		c.drawLine (150, 0, 150, (((20) * players) + 18));
-		c.drawLine (230, 0, 230, (((20) * players) + 18));
-		c.drawLine (390, 0, 390, (((20) * players) + 18));
-		c.drawLine (550, 0, 550, (((20) * players) + 18));
-	    }
-	    //Sorting Menu
-	    else if (choice == 2)
-	    {
-		c.println ("    Sorting Options");
-		c.println ();
-		c.println ("(1) Age Ascending");
-		c.println ("(2) Age Descending");
-		c.println ("(3) Average Ascending");
-		c.println ("(4) Average Descending");
-		c.println ("(5) Name Ascending");
-		c.println ("(6) Name Descending");
-		c.println ("(7) Position Ascending");
-		c.println ("(8) Position Descending");
-		c.println ();
-		c.print ("How would you like to proceed? ");
-		int sortchoice = c.readInt ();
-		// Age Ascending
-		if (sortchoice == 1)
-		{
-		    flag = "up";
-		    while (flag.equalsIgnoreCase ("up"))
-		    {
-			flag = "down";
-			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
-			{
-			    if (age [xyz] > age [xyz + 1])
-			    {
-				flag = "up";
-				agetemp = age [xyz];
-				age [xyz] = age [xyz + 1];
-				age [xyz + 1] = agetemp;
-				nametemp = name [xyz];
-				name [xyz] = name [xyz + 1];
-				name [xyz + 1] = nametemp;
-				avgtemp = avg [xyz];
-				avg [xyz] = avg [xyz + 1];
-				avg [xyz + 1] = avgtemp;
-				postemp = pos [xyz];
-				pos [xyz] = pos [xyz + 1];
-				pos [xyz + 1] = postemp;
-			    }
-			}
-		    }
-		}
-		// Age Descending
-		else if (sortchoice == 2)
-		{
-		    flag = "up";
-		    while (flag.equalsIgnoreCase ("up"))
-		    {
-			flag = "down";
-			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
-			{
-			    if (age [xyz] < age [xyz + 1])
-			    {
-				flag = "up";
-				agetemp = age [xyz];
-				age [xyz] = age [xyz + 1];
-				age [xyz + 1] = agetemp;
-				nametemp = name [xyz];
-				name [xyz] = name [xyz + 1];
-				name [xyz + 1] = nametemp;
-				avgtemp = avg [xyz];
-				avg [xyz] = avg [xyz + 1];
-				avg [xyz + 1] = avgtemp;
-				postemp = pos [xyz];
-				pos [xyz] = pos [xyz + 1];
-				pos [xyz + 1] = postemp;
-			    }
-			}
-		    }
-		}
-		// Average Ascending
-		else if (sortchoice == 3)
-		{
-		    flag = "up";
-		    while (flag.equalsIgnoreCase ("up"))
-		    {
-			flag = "down";
-			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
-			{
-			    if (avg [xyz] > avg [xyz + 1])
-			    {
-				flag = "up";
-				agetemp = age [xyz];
-				age [xyz] = age [xyz + 1];
-				age [xyz + 1] = agetemp;
-				nametemp = name [xyz];
-				name [xyz] = name [xyz + 1];
-				name [xyz + 1] = nametemp;
-				avgtemp = avg [xyz];
-				avg [xyz] = avg [xyz + 1];
-				avg [xyz + 1] = avgtemp;
-				postemp = pos [xyz];
-				pos [xyz] = pos [xyz + 1];
-				pos [xyz + 1] = postemp;
-			    }
-			}
-		    }
-		}
-		// Age Descending
-		else if (sortchoice == 4)
-		{
-		    flag = "up";
-		    while (flag.equalsIgnoreCase ("up"))
-		    {
-			flag = "down";
-			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
-			{
-			    if (avg [xyz] < avg [xyz + 1])
-			    {
-				flag = "up";
-				agetemp = age [xyz];
-				age [xyz] = age [xyz + 1];
-				age [xyz + 1] = agetemp;
-				nametemp = name [xyz];
-				name [xyz] = name [xyz + 1];
-				name [xyz + 1] = nametemp;
-				avgtemp = avg [xyz];
-				avg [xyz] = avg [xyz + 1];
-				avg [xyz + 1] = avgtemp;
-				postemp = pos [xyz];
-				pos [xyz] = pos [xyz + 1];
-				pos [xyz + 1] = postemp;
-			    }
-			}
-		    }
-		}
-		// Name Ascending
-		else if (sortchoice == 5)
-		{
-		    flag = "up";
-		    while (flag.equalsIgnoreCase ("up"))
-		    {
-			flag = "down";
-			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
-			{
-			    int result = name [xyz].compareTo (name [xyz + 1]);
-			    if (result > 0)
-			    {
-				flag = "up";
-				agetemp = age [xyz];
-				age [xyz] = age [xyz + 1];
-				age [xyz + 1] = agetemp;
-				nametemp = name [xyz];
-				name [xyz] = name [xyz + 1];
-				name [xyz + 1] = nametemp;
-				avgtemp = avg [xyz];
-				avg [xyz] = avg [xyz + 1];
-				avg [xyz + 1] = avgtemp;
-				postemp = pos [xyz];
-				pos [xyz] = pos [xyz + 1];
-				pos [xyz + 1] = postemp;
-			    }
-			}
-		    }
-		}
-		// Name Descending
-		else if (sortchoice == 6)
-		{
-		    flag = "up";
-		    while (flag.equalsIgnoreCase ("up"))
-		    {
-			flag = "down";
-			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
-			{
-			    int result = name [xyz].compareTo (name [xyz + 1]);
-			    if (result < 0)
-			    {
-				flag = "up";
-				agetemp = age [xyz];
-				age [xyz] = age [xyz + 1];
-				age [xyz + 1] = agetemp;
-				nametemp = name [xyz];
-				name [xyz] = name [xyz + 1];
-				name [xyz + 1] = nametemp;
-				avgtemp = avg [xyz];
-				avg [xyz] = avg [xyz + 1];
-				avg [xyz + 1] = avgtemp;
-				postemp = pos [xyz];
-				pos [xyz] = pos [xyz + 1];
-				pos [xyz + 1] = postemp;
-			    }
-			}
-		    }
-		}
-		// Position Ascending
-		else if (sortchoice == 7)
-		{
-		    flag = "up";
-		    while (flag.equalsIgnoreCase ("up"))
-		    {
-			flag = "down";
-			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
-			{
-			    int result = pos [xyz].compareTo (pos [xyz + 1]);
-			    if (result > 0)
-			    {
-				flag = "up";
-				agetemp = age [xyz];
-				age [xyz] = age [xyz + 1];
-				age [xyz + 1] = agetemp;
-				nametemp = name [xyz];
-				name [xyz] = name [xyz + 1];
-				name [xyz + 1] = nametemp;
-				avgtemp = avg [xyz];
-				avg [xyz] = avg [xyz + 1];
-				avg [xyz + 1] = avgtemp;
-				postemp = pos [xyz];
-				pos [xyz] = pos [xyz + 1];
-				pos [xyz + 1] = postemp;
-
-			    }
-			}
-		    }
-		}
-		// Position Descending
-		else if (sortchoice == 8)
-		{
-		    flag = "up";
-		    while (flag.equalsIgnoreCase ("up"))
-		    {
-			flag = "down";
-			for (int xyz = 0 ; xyz < (players - 1) ; xyz = xyz + 1)
-			{
-			    int result = pos [xyz].compareTo (pos [xyz + 1]);
-			    if (result < 0)
-			    {
-				flag = "up";
-				agetemp = age [xyz];
-				age [xyz] = age [xyz + 1];
-				age [xyz + 1] = agetemp;
-				nametemp = name [xyz];
-				name [xyz] = name [xyz + 1];
-				name [xyz + 1] = nametemp;
-				avgtemp = avg [xyz];
-				avg [xyz] = avg [xyz + 1];
-				avg [xyz + 1] = avgtemp;
-				postemp = pos [xyz];
-				pos [xyz] = pos [xyz + 1];
-				pos [xyz + 1] = postemp;
-
-			    }
-			}
-		    }
-		}
-		c.clear ();
-		int y = 14;
-		c.print ("Name:", 20);
-		c.print ("Age:", 10);
-		c.print ("Batting Average:", 20);
-		c.println ("Postion:");
-		for (int yc = 0 ; yc < players ; yc = yc + 1)
-		{
-		    c.print (age [yc], 22);
-		    c.println (avg [yc], 12);
-		    c.drawString (name [yc], 0, y = y + 20);
-		    c.drawString (pos [yc], 400, y);
-		    c.drawLine (0, (20 * (yc + 1)), 550, (20 * (yc + 1)));
-		}
-		c.drawLine (0, (20 * (players + 1)), 550, (20 * (players + 1)));
-		c.drawLine (0, 20, 550, 20);
-		c.drawLine (150, 0, 150, (((20) * players) + 18));
-		c.drawLine (230, 0, 230, (((20) * players) + 18));
-		c.drawLine (390, 0, 390, (((20) * players) + 18));
-		c.drawLine (550, 0, 550, (((20) * players) + 18));
-
-	    }
-	    //Search
-	    else if (choice == 3)
-	    {
-		c.print ("Please enter name of the player you'd like to view: ");
-		lookfor = c.readString ();
-		c.clear ();
-
-		for (int yc = 0 ; yc < players ; yc++)
-		{
-		    if (lookfor.equalsIgnoreCase (nameo [yc]))
-		    {
-			{
-			    int y = 14;
-			    c.print ("Name:", 20);
-			    c.print ("Age:", 10);
-			    c.print ("Batting Average:", 20);
-			    c.println ("Postion:");
-			    c.print (ageo [yc], 22);
-			    c.println (avgo [yc], 12);
-			    c.drawString (nameo [yc], 0, y = y + 20);
-			    c.drawString (poso [yc], 400, y);
-			    c.drawLine (0, (20 * (yc + 1)), 550, (20 * (yc + 1)));
-			}
-			c.drawLine (0, (20 * (players + 1)), 550, (20 * (players + 1)));
-			c.drawLine (0, 20, 550, 20);
-			c.drawLine (150, 0, 150, (((20) * players) + 18));
-			c.drawLine (230, 0, 230, (((20) * players) + 18));
-			c.drawLine (390, 0, 390, (((20) * players) + 18));
-			c.drawLine (550, 0, 550, (((20) * players) + 18));
-
-		    }
-		}
-	    }
-	    //Exit
-	    else if (choice == 4)
-	    {
-		System.exit (0);
-	    }
-	    //Invalid Option Selected
-	    else
-	    {
-		c.clear ();
-		c.println ("Error: Invalid Option Selected");
-	    }
-	    //Reset
-	    c.drawString ("Press <ENTER> to return to menu", 390, 500);
-	    c.setCursorVisible (false);
-	    char menu = c.readChar ();
-	    c.setCursorVisible (true);
-	    c.clear ();
-	}
-    }
-} // Place your program here.  'c' is the output console
-// main method
-// Bluejays class
+}
