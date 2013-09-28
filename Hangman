@@ -1,0 +1,604 @@
+// The "Hangman" class.
+import java.awt.*;
+import hsa.Console;
+
+public class Hangman
+{
+    static Console c;
+    static Image logo;    // The output console
+
+    public static void main (String[] args)
+    {
+	c = new Console ();
+
+	for (int play = 1 ; play <= 9999 ; play++)
+	{
+	    
+	    logo = Toolkit.getDefaultToolkit ().getImage ("NEON.HANGMAN6.GIF");
+	    //Draw the image once and it will appear blank, it has not loaded
+	    c.drawImage (logo, 0, 0, null);
+	    
+	    //Delay For a small amount of time to allow the image to load
+	    for (int i = 0 ; i < 1000000000 ; i++)
+	    {
+	    }
+
+	    //Draw the image again, this time it will not be blank
+	    c.drawImage (logo, 0, 0, null);
+	    c.setTextBackgroundColor(Color.darkGray);
+	    
+	    
+	    int playagain;
+	    int level;
+	    
+	    c.setTextColor (Color.white);
+	    
+
+	    level = c.readInt ();
+
+	    if (level == 1)
+	    {
+		easy ();
+	    }
+	    else if (level == 2)
+	    {
+		intermediate ();
+	    }
+	    else if (level == 3)
+	    {
+		hard ();
+	    }
+	    else if (level == 4)
+	    {
+		extreme ();
+	    }
+	    else if (level == 5)
+	    {
+		System.exit (0);
+	    }
+	 
+
+	    c.print ("Do you want to play again? <Enter 1 for yes or 2 to exit>");
+	    playagain = c.readInt ();
+	    if (playagain == 1)
+	    {
+		c.clear ();
+	    }
+	    else if (playagain == 2)
+	    {
+		System.exit (0);
+	    }
+
+	}
+	// Place your program here.  'c' is the output console
+    } // main method
+
+
+    public static void easy ()
+    {
+	c.clear ();
+	double rnum;
+	int numberpicked;
+	char reset;
+
+	rnum = (int) (Math.random () * 10 + 1);
+	Color col = new Color (160, 82, 42);
+	c.setColor (col);
+	c.fillRect (500, 100, 20, 250);
+	c.fillRect (420, 100, 100, 15);
+	c.fillRect (420, 350, 150, 15);
+
+	for (int yc = 0 ; yc <= 5 ; yc++)
+	{
+	    c.print ("Pick a number from 1-10: ");
+	    numberpicked = c.readInt ();
+	    if (numberpicked == rnum)
+	    {
+		c.clear ();
+		c.println ("You Win!");
+		c.println ();
+
+		break;
+	    }
+	    else if (numberpicked <= rnum)
+	    {
+		c.println ("Your to low");
+		c.println ("Press <enter> to try again...");
+		reset = c.readChar ();
+		c.clear ();
+	    }
+	    else if (numberpicked >= rnum)
+	    {
+		c.println ("Your to high");
+		c.println ("Press <enter> to try again...");
+		reset = c.readChar ();
+		c.clear ();
+	    }
+
+	    if (yc == 0)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+
+	    }
+	    else if (yc == 1)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+	    }
+	    else if (yc == 2)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+		c.setColor (Color.white);
+		c.drawRect (435, 175, 60, 12);
+	    }
+	    else if (yc == 3)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+		c.setColor (Color.white);
+		c.drawRect (435, 175, 60, 12);
+		c.setColor (Color.white);
+		c.drawRect (360, 175, 60, 12);
+	    }
+	    else if (yc == 4)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+		c.setColor (Color.white);
+		c.drawRect (435, 175, 60, 12);
+		c.setColor (Color.white);
+		c.drawRect (360, 175, 60, 12);
+		c.setColor (Color.green);
+		c.drawRect (407, 225, 12, 75);
+	    }
+	    else if (yc == 5)
+
+		{
+		    c.setColor (col);
+		    c.fillRect (500, 100, 20, 250);
+		    c.fillRect (420, 100, 100, 15);
+		    c.fillRect (420, 350, 150, 15);
+		    c.setColor (Color.blue);
+		    c.drawOval (400, 115, 50, 50);
+		    c.setColor (Color.red);
+		    c.drawRect (420, 165, 12, 75);
+		    c.setColor (Color.white);
+		    c.drawRect (435, 175, 60, 12);
+		    c.setColor (Color.white);
+		    c.drawRect (360, 175, 60, 12);
+		    c.setColor (Color.green);
+		    c.drawRect (407, 225, 12, 75);
+		    c.setColor (Color.green);
+		    c.drawRect (432, 225, 12, 75);
+		}
+
+	}
+
+
+    }
+
+
+    public static void intermediate ()
+    {
+	c.clear ();
+	double rnum;
+	int numberpicked;
+	char reset;
+	rnum = (int) (Math.random () * 30 + 1);
+	Color col = new Color (160, 82, 42);
+	c.setColor (col);
+	c.fillRect (500, 100, 20, 250);
+	c.fillRect (420, 100, 100, 15);
+	c.fillRect (420, 350, 150, 15);
+
+	for (int yc = 0 ; yc <= 5 ; yc++)
+	{
+	    c.print ("Pick a number from 1-30: ");
+	    numberpicked = c.readInt ();
+	    if (numberpicked == rnum)
+	    {
+		c.clear ();
+		c.println ("You Win!");
+		c.println ();
+		break;
+	    }
+	    else if (numberpicked <= rnum)
+	    {
+		c.println ("Your to low");
+		c.println ("Press <enter> to try again...");
+		reset = c.readChar ();
+		c.clear ();
+	    }
+	    else if (numberpicked >= rnum)
+	    {
+		c.println ("Your to high");
+		c.println ("Press <enter> to try again...");
+		reset = c.readChar ();
+		c.clear ();
+	    }
+
+	    if (yc == 0)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+
+	    }
+	    else if (yc == 1)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+	    }
+	    else if (yc == 2)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+		c.setColor (Color.white);
+		c.drawRect (435, 175, 60, 12);
+	    }
+	    else if (yc == 3)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+		c.setColor (Color.white);
+		c.drawRect (435, 175, 60, 12);
+		c.setColor (Color.white);
+		c.drawRect (360, 175, 60, 12);
+	    }
+	    else if (yc == 4)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+		c.setColor (Color.white);
+		c.drawRect (435, 175, 60, 12);
+		c.setColor (Color.white);
+		c.drawRect (360, 175, 60, 12);
+		c.setColor (Color.green);
+		c.drawRect (407, 225, 12, 75);
+	    }
+	    else if (yc == 5)
+
+		{
+		    c.setColor (col);
+		    c.fillRect (500, 100, 20, 250);
+		    c.fillRect (420, 100, 100, 15);
+		    c.fillRect (420, 350, 150, 15);
+		    c.setColor (Color.blue);
+		    c.drawOval (400, 115, 50, 50);
+		    c.setColor (Color.red);
+		    c.drawRect (420, 165, 12, 75);
+		    c.setColor (Color.white);
+		    c.drawRect (435, 175, 60, 12);
+		    c.setColor (Color.white);
+		    c.drawRect (360, 175, 60, 12);
+		    c.setColor (Color.green);
+		    c.drawRect (407, 225, 12, 75);
+		    c.setColor (Color.green);
+		    c.drawRect (432, 225, 12, 75);
+		}
+
+	}
+
+    }
+
+
+    public static void hard ()
+    {
+	c.clear ();
+	double rnum;
+	int numberpicked;
+	char reset;
+	rnum = (int) (Math.random () * 100 + 1);
+	rnum = (int) (Math.random () * 20 + 1);
+	Color col = new Color (160, 82, 42);
+	c.setColor (col);
+	c.fillRect (500, 100, 20, 250);
+	c.fillRect (420, 100, 100, 15);
+	c.fillRect (420, 350, 150, 15);
+	for (int yc = 0 ; yc <= 5 ; yc++)
+	{
+	    c.print ("Pick a number from 1-100: ");
+	    numberpicked = c.readInt ();
+	    if (numberpicked == rnum)
+	    {
+		c.clear ();
+		c.println ("You Win!");
+		c.println ();
+		break;
+	    }
+	    else if (numberpicked <= rnum)
+	    {
+		c.println ("Your to low");
+		c.println ("Press <enter> to try again...");
+		reset = c.readChar ();
+		c.clear ();
+	    }
+	    else if (numberpicked >= rnum)
+	    {
+		c.println ("Your to high");
+		c.println ("Press <enter> to try again...");
+		reset = c.readChar ();
+		c.clear ();
+	    }
+
+	    if (yc == 0)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+
+	    }
+	    else if (yc == 1)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+	    }
+	    else if (yc == 2)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+		c.setColor (Color.white);
+		c.drawRect (435, 175, 60, 12);
+	    }
+	    else if (yc == 3)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+		c.setColor (Color.white);
+		c.drawRect (435, 175, 60, 12);
+		c.setColor (Color.white);
+		c.drawRect (360, 175, 60, 12);
+	    }
+	    else if (yc == 4)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+		c.setColor (Color.white);
+		c.drawRect (435, 175, 60, 12);
+		c.setColor (Color.white);
+		c.drawRect (360, 175, 60, 12);
+		c.setColor (Color.green);
+		c.drawRect (407, 225, 12, 75);
+	    }
+	    else if (yc == 5)
+
+		{
+		    c.setColor (col);
+		    c.fillRect (500, 100, 20, 250);
+		    c.fillRect (420, 100, 100, 15);
+		    c.fillRect (420, 350, 150, 15);
+		    c.setColor (Color.blue);
+		    c.drawOval (400, 115, 50, 50);
+		    c.setColor (Color.red);
+		    c.drawRect (420, 165, 12, 75);
+		    c.setColor (Color.white);
+		    c.drawRect (435, 175, 60, 12);
+		    c.setColor (Color.white);
+		    c.drawRect (360, 175, 60, 12);
+		    c.setColor (Color.green);
+		    c.drawRect (407, 225, 12, 75);
+		    c.setColor (Color.green);
+		    c.drawRect (432, 225, 12, 75);
+		}
+
+	}
+    }
+
+
+    public static void extreme ()
+    {
+	c.clear ();
+	double rnum;
+	int numberpicked;
+	char reset;
+	rnum = (int) (Math.random () * 500 + 1);
+
+	Color col = new Color (160, 82, 42);
+	c.setColor (col);
+	c.fillRect (500, 100, 20, 250);
+	c.fillRect (420, 100, 100, 15);
+	c.fillRect (420, 350, 150, 15);
+	for (int yc = 0 ; yc <= 5 ; yc++)
+	{
+	    c.print ("Pick a number from 1-500: ");
+	    numberpicked = c.readInt ();
+	    if (numberpicked == rnum)
+	    {
+
+		break;
+	    }
+	    else if (numberpicked <= rnum)
+	    {
+		c.println ("Your to low");
+		c.println ("Press <enter> to try again...");
+		reset = c.readChar ();
+		c.clear ();
+	    }
+	    else if (numberpicked >= rnum)
+	    {
+		c.println ("Your to high");
+		c.println ("Press <enter> to try again...");
+		reset = c.readChar ();
+		c.clear ();
+	    }
+
+	    if (yc == 0)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+
+	    }
+	    else if (yc == 1)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+	    }
+	    else if (yc == 2)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+		c.setColor (Color.white);
+		c.drawRect (435, 175, 60, 12);
+	    }
+	    else if (yc == 3)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+		c.setColor (Color.white);
+		c.drawRect (435, 175, 60, 12);
+		c.setColor (Color.white);
+		c.drawRect (360, 175, 60, 12);
+	    }
+	    else if (yc == 4)
+	    {
+		c.setColor (col);
+		c.fillRect (500, 100, 20, 250);
+		c.fillRect (420, 100, 100, 15);
+		c.fillRect (420, 350, 150, 15);
+		c.setColor (Color.blue);
+		c.drawOval (400, 115, 50, 50);
+		c.setColor (Color.red);
+		c.drawRect (420, 165, 12, 75);
+		c.setColor (Color.white);
+		c.drawRect (435, 175, 60, 12);
+		c.setColor (Color.white);
+		c.drawRect (360, 175, 60, 12);
+		c.setColor (Color.green);
+		c.drawRect (407, 225, 12, 75);
+	    }
+	    else if (yc == 5)
+
+		{
+		    c.setColor (col);
+		    c.fillRect (500, 100, 20, 250);
+		    c.fillRect (420, 100, 100, 15);
+		    c.fillRect (420, 350, 150, 15);
+		    c.setColor (Color.blue);
+		    c.drawOval (400, 115, 50, 50);
+		    c.setColor (Color.red);
+		    c.drawRect (420, 165, 12, 75);
+		    c.setColor (Color.white);
+		    c.drawRect (435, 175, 60, 12);
+		    c.setColor (Color.white);
+		    c.drawRect (360, 175, 60, 12);
+		    c.setColor (Color.green);
+		    c.drawRect (407, 225, 12, 75);
+		    c.setColor (Color.green);
+		    c.drawRect (432, 225, 12, 75);
+		}
+
+	}
+    }
+} // Hangman class
+
+
