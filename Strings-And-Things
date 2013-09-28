@@ -1,0 +1,410 @@
+import hsa.Console;
+import java.awt.Color;
+import java.awt.Font;
+
+
+public class Substrings {
+	static Console c;
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated meathod stub
+		c = new Console ();
+		//Main Variables
+		String firstname; // First name
+		String lastname; // Last name
+		int choice; // User's choice from main menu
+		int consolewidth = c.getWidth (); // Max  width of console in pixels
+		int consoleheight = c.getHeight (); //Max height of console in pixels
+		int ystandard = consoleheight / 2; //Standard used for centering misc strings
+		int xmenu = ((consolewidth - ((27) * 9)) / 2) - 7; //X-value used (with slight adjustments) for centering strings in main menu
+		int size = 50; //Default size in which first and last name are diplayed
+
+		int rtext = 255; //# of default red for text
+		int gtext = 255; //# of default green for text
+		int btext = 255; //# of default blue for text
+		int rbackground = 0; //# of default red for background
+		int gbackground = 0; //# of default green for text
+		int bbackground = 0; //# of default blue for text
+		Color customtext = new Color (rtext, gtext, btext);
+		Color custombackground = new Color (rbackground, gbackground, bbackground);
+
+
+		Font Copyright = new Font ("Courier", Font.PLAIN, 10); // Font used for copyright statement
+		Font Main = new Font ("Courier", Font.BOLD, 32); // Font used for title of program
+		Font Mainbody = new Font ("Courier", Font.BOLD, 16); // Font used for misc dialogs
+		Font Menuheading = new Font ("Courier", Font.BOLD, 22); // Font used for heading "Menu" in main menu
+		Font Menubody = new Font ("Courier", Font.PLAIN, 16); // Font used for displaying options in main menu amongst other misc dialogs
+		Font UserFont = new Font ("Courier", Font.BOLD, size); //Font with user-defined size
+		Font Reset = new Font ("Courier", Font.PLAIN, 12); // Font useed in "return to menu" dialogs
+
+
+		//Output
+		c.setTextBackgroundColor (custombackground); //Default background colour
+		c.setColor (custombackground); //----
+		c.fillRect (0, 0, 1000, 1000); //----
+		c.setTextColor (customtext); //Default text colour
+		c.setColor (customtext); //---
+		c.setCursorVisible (false); //Cursor set to be invisible
+
+		c.setFont (Main);
+		c.drawString ("All About The Substrings (AATS)", ((consolewidth - (31 * 18)) / 2), ystandard - 20);
+		c.setFont (Copyright);
+		c.drawString ("Copyright © Chaudhry Corporations 2013", ((consolewidth - (37 * 6)) / 2), ystandard + 200);
+		c.drawString ("All Rights Reserved.", ((consolewidth - (20 * 6)) / 2), ystandard + 210);
+		c.drawString ("No part of this software may be reproduced without Waleed Chaudhry's express consent.", ((consolewidth - (82 * 6)) / 2), ystandard + 220);
+		c.setFont (Mainbody);
+		c.drawString ("Press <ENTER> To Start", ((consolewidth - (22 * 9)) / 2), ystandard + 100);
+		char start = c.readChar ();
+		c.setCursorVisible (true);
+
+		//Input
+		c.clear ();
+		c.print ("", 1016);
+		c.drawString ("Please enter you first name: ", ((consolewidth - (39 * 8)) / 2), ystandard+5);
+		firstname = c.readString ();
+		c.clear ();
+		c.print ("", 1015);
+		c.drawString ("Please enter you last name: ", ((consolewidth - (38 * 8)) / 2), ystandard+5);
+		lastname = c.readString ();
+
+		//Other Variables
+		int lengthfirst = firstname.length (); //Length of first name entered
+		int lengthlast = lastname.length (); //Length of last name entered
+		int lengthfinal = lengthfirst + lengthlast; //Length of full name
+		int xname = (consolewidth - ((lengthfinal + 1) * ((size / 2) + (size / 16)))) / 2; //X-value used for centering name
+
+
+		c.clear ();
+
+		//Main loop responsible for restarting from main menu
+		for (int restart = 0 ; restart < 999999999 ; restart++)
+		{
+			//Output
+			c.print ("", 1419);
+			c.setFont (Menuheading);
+			c.drawString ("       Menu", xmenu + 20, ystandard - 130);
+			c.setFont (Menubody);
+			c.drawString ("1. View Lengths", xmenu + 20, ystandard - 80);
+			c.drawString ("2. Display Fourth Character", xmenu + 20, ystandard - 60);
+			c.drawString ("3. Change Font Size", xmenu + 20, ystandard - 40);
+			c.drawString ("4. View Centered Entry", xmenu + 20, ystandard - 20);
+			c.drawString ("5. Replace Characters", xmenu + 20, ystandard);
+			c.drawString ("6. Fancy", xmenu + 20, ystandard + 20);
+			c.drawString ("7. Change Colours", xmenu + 20, ystandard + 40);
+			c.drawString ("8. Exit", xmenu + 20, ystandard + 60);
+
+			//Input
+			c.drawString ("What would you like to do? ", xmenu + 20, ystandard + 105);
+			choice = c.readInt ();
+
+			c.clear ();
+			c.setFont (Mainbody);
+
+			//Shows length of characters in each name
+			if (choice == 1)
+			{
+				c.drawString ("First Name: " + lengthfirst + " Characters", ((consolewidth - (23 * 9)) / 2), ystandard - 10);
+				c.drawString ("Last Name: " + lengthlast + " Characters", ((consolewidth - (23 * 9)) / 2), ystandard + 10);
+			}
+
+			//Displays fourth character of each name
+			else if (choice == 2)
+			{
+
+				c.print ("", 1248);
+				c.setFont (Menuheading);
+				c.drawString ("Options", ((consolewidth - (11 * 9)) / 2), ystandard - 30);
+				c.setFont (Menubody);
+				c.drawString ("1. First Name", ((consolewidth - (13 * 9)) / 2), ystandard + 10);
+				c.drawString ("2. Last Name", ((consolewidth - (13 * 9)) / 2), ystandard + 25);
+				c.drawString ("Which name?", ((consolewidth - (11 * 9)) / 2), ystandard + 65);
+				int fourthname = c.readInt ();
+				String fourthcharacter1 = firstname.substring (3, 4);
+				String fourthcharacter2 = lastname.substring (3, 4);
+				c.clear ();
+				c.setFont (Mainbody);
+				if (fourthname == 1)
+				{
+					if (lengthfirst>3){
+						c.drawString ("Fourth Character: " + fourthcharacter1, ((consolewidth - (19 * 9)) / 2), ystandard);
+					}
+					else {
+						c.drawString ("Your name doesn't contain 4 characters", ((consolewidth - (38 * 9)) / 2), ystandard);
+					}
+				}
+				else if (fourthname == 2)
+				{	if (lengthlast>3){
+					c.drawString ("Fourth Character: " + fourthcharacter2, ((consolewidth - (19 * 9)) / 2), ystandard);
+				}
+				else {
+					c.drawString ("Your name doesn't contain 4 characters", ((consolewidth - (38 * 9)) / 2), ystandard);
+				}
+				}
+
+			}
+
+			// Allows user to change font size for options 4 and 6
+			else if (choice == 3)
+			{
+				c.print ("", 1017);
+				c.drawString ("What size would you like:", ((consolewidth - (26 * 9)) / 2), ystandard + 5);
+				size = c.readInt ();
+				UserFont = new Font ("Courier", Font.BOLD, size);
+				c.clear ();
+				c.drawString ("Done, changes are only visible in options 4 and 6.", ((consolewidth - (50 * 9)) / 2), ystandard + 5);
+
+			}
+
+			//Shows centred entry
+			else if (choice == 4)
+			{
+				xname = (consolewidth - ((lengthfinal + 1) * ((size / 2) + (size / 13)))) / 2;
+				c.setFont (UserFont);
+				c.drawString (firstname + " " + lastname, xname, ystandard);
+			}
+
+			// Allows user to replace characters from there name
+			else if (choice == 5)
+			{
+				c.print ("", 1265);
+				c.setFont (Menuheading);
+				c.drawString ("Options", ((consolewidth - (9 * 9)) / 2), ystandard - 30);
+				c.setFont (Menubody);
+				c.drawString ("1. First Name", ((consolewidth - (13 * 9)) / 2), ystandard);
+				c.drawString ("2. Last Name", ((consolewidth - (13 * 9)) / 2), ystandard + 15);
+				c.drawString ("Which name would you like to change?", ((consolewidth - (37 * 9)) / 2), ystandard + 65);
+				int option = c.readInt ();
+
+				if (option == 1)
+				{
+					c.clear ();
+					c.print ("", 1111);
+					c.setFont (Mainbody);
+					xname = (consolewidth - ((lengthfirst + 22) * 9)) / 2;
+					c.drawString ("Available Characters: " + firstname, xname, ystandard - 50);
+					c.drawString ("Which character would you like to replace? ", ((consolewidth - (39 * 9)) / 2) - 5, ystandard + 25);
+					char originalcharacter = c.readChar ();
+
+					c.clear ();
+					c.print ("", 1034);
+					c.drawString ("Which character would you like to replace " + "(" + originalcharacter + ") with?", ((consolewidth - (48 * 9)) / 2) - 25, ystandard + 5);
+					String chosenstring = c.readString ();
+					char chosencharacter = chosenstring.charAt (0);
+
+					c.clear ();
+					String newname = firstname.replace (originalcharacter, chosencharacter);
+					firstname = newname;
+					c.drawString ("Done, your first name has been changed to: " + firstname, ((consolewidth - ((lengthfirst + 44) * 9)) / 2), ystandard);
+				}
+				else if (option == 2)
+				{
+
+					c.clear ();
+					c.print ("", 1111);
+					c.setFont (Mainbody);
+					xname = (consolewidth - ((lengthlast + 22) * 9)) / 2;
+					c.drawString ("Available Characters: " + lastname, xname, ystandard - 50);
+					c.drawString ("Which character would you like to replace?", ((consolewidth - (39 * 9)) / 2) - 5, ystandard + 25);
+					char originalcharacter1 = c.readChar ();
+
+					c.clear ();
+					c.print ("", 1034);
+					c.drawString ("Which character would you like to replace " + "(" + originalcharacter1 + ") with?", ((consolewidth - (48 * 9)) / 2) - 25, ystandard + 5);
+					String chosenstring1 = c.readString ();
+					char chosencharacter1 = chosenstring1.charAt (0);
+
+					c.clear ();
+					String newname1 = lastname.replace (originalcharacter1, chosencharacter1);
+					lastname = newname1;
+					c.drawString ("Done, your last name has been changed to: " + lastname, ((consolewidth - ((lengthlast + 44) * 9)) / 2), ystandard);
+				}
+				else
+				{
+					c.clear ();
+					c.setFont (Mainbody);
+					c.drawString ("Error: Invalid Option Selected", ((consolewidth - (30 * 9)) / 2), ystandard);
+				}
+			}
+
+			// Coders choice - user can customize colours of the program
+			else if (choice == 7)
+			{
+
+				c.print ("", 1265);
+				c.setFont (Menuheading);
+				c.drawString ("Options", ((consolewidth - (7 * 9)) / 2), ystandard - 30);
+				c.setFont (Menubody);
+				c.drawString ("1. Text", ((consolewidth - (9 * 9)) / 2) + 12, ystandard);
+				c.drawString ("2. Background", ((consolewidth - (9 * 9)) / 2) + 12, ystandard + 15);
+				c.drawString ("What would you like to change?", (((consolewidth + 15) - (25 * 9)) / 2), ystandard + 65);
+				int colourtypeoption = c.readInt ();
+
+				c.clear ();
+				if (colourtypeoption == 1)
+				{
+					c.print ("", 1265);
+					c.setFont (Menuheading);
+					c.drawString ("Options", ((consolewidth - (7 * 9)) / 2), ystandard - 30);
+					c.setFont (Menubody);
+					c.drawString ("1. Custom", ((consolewidth - (9 * 9)) / 2) + 12, ystandard);
+					c.drawString ("2. Randomize", ((consolewidth - (9 * 9)) / 2) + 12, ystandard + 15);
+					c.drawString ("How would you like to proceed?", (((consolewidth + 15) - (25 * 9)) / 2), ystandard + 65);
+					int colouroption = c.readInt ();
+					c.clear ();
+					if (colouroption == 1)
+					{
+						c.print ("", 1025);
+						c.drawString ("How much red would you like (0-255)? ", ((consolewidth - (37 * 9)) / 2), ystandard + 5);
+						rtext = c.readInt ();
+						c.clear ();
+						c.print ("", 1026);
+						c.drawString ("How much green would you like (0-255)? ", ((consolewidth - (39 * 9)) / 2), ystandard + 5);
+						gtext = c.readInt ();
+						c.clear ();
+						c.print ("", 1026);
+						c.drawString ("How much blue would you like (0-255)? ", ((consolewidth - (38 * 9)) / 2), ystandard + 5);
+						btext = c.readInt ();
+					}
+					else if (colouroption == 2)
+					{
+						rtext = (int) (Math.random () * 255 + 1);
+						gtext = (int) (Math.random () * 255 + 1);
+						btext = (int) (Math.random () * 255 + 1);
+					}
+					else
+					{
+					}
+				}
+				else if (colourtypeoption == 2)
+				{
+					c.print ("", 1265);
+					c.setFont (Menuheading);
+					c.drawString ("Options", ((consolewidth - (7 * 9)) / 2), ystandard - 30);
+					c.setFont (Menubody);
+					c.drawString ("1. Custom", ((consolewidth - (9 * 9)) / 2) + 12, ystandard);
+					c.drawString ("2. Randomize", ((consolewidth - (9 * 9)) / 2) + 12, ystandard + 15);
+					c.drawString ("How would you like to proceed?", (((consolewidth + 15) - (25 * 9)) / 2), ystandard + 65);
+					int colouroption = c.readInt ();
+					c.clear ();
+					if (colouroption == 1)
+					{
+						c.print ("", 1025);
+						c.drawString ("How much red would you like (0-255)? ", ((consolewidth - (37 * 9)) / 2), ystandard + 5);
+						rbackground = c.readInt ();
+						c.clear ();
+						c.print ("", 1026);
+						c.drawString ("How much green would you like (0-255)? ", ((consolewidth - (39 * 9)) / 2), ystandard + 5);
+						gbackground = c.readInt ();
+						c.clear ();
+						c.print ("", 1026);
+						c.drawString ("How much blue would you like (0-255)? ", ((consolewidth - (38 * 9)) / 2), ystandard + 5);
+						bbackground = c.readInt ();
+
+
+
+					}
+					else if (colouroption == 2)
+					{
+						rbackground = (int) (Math.random () * 255 + 1);
+						gbackground = (int) (Math.random () * 255 + 1);
+						bbackground = (int) (Math.random () * 255 + 1);
+					}
+					else
+					{
+					}
+				}
+				else
+				{
+				}
+				customtext = new Color (rtext, gtext, btext);
+				custombackground = new Color (rbackground, gbackground, bbackground);
+				c.setTextBackgroundColor (custombackground);
+				c.setColor (custombackground);
+				c.fillRect (0, 0, 1000, 1000);
+				c.setTextColor (customtext);
+				c.setColor (customtext);
+				c.drawString ("Colour has been set", ((consolewidth - (19 * 9)) / 2), ystandard + 5);
+
+			}
+
+
+			else if (choice == 6)
+			{
+				int userdefineddelay = 19999999;
+
+				String fullname = firstname + " " + lastname;
+
+				for (int recolour = 0 ; recolour < 20 ; recolour++)
+				{
+					xname = (consolewidth - ((lengthfinal + 1) * ((size / 2) + (size / 16)))) / 2;
+					for (int namerepeat = 0 ; namerepeat < lengthfinal + 1 ; namerepeat++)
+					{
+
+						int r = (int) (Math.random () * 255 + 1);
+						int g = (int) (Math.random () * 255 + 1);
+						int b = (int) (Math.random () * 255 + 1);
+						Color col = new Color (r, g, b);
+
+						c.setColor (col);
+						c.setFont (UserFont);
+						String nameletters = fullname.substring (namerepeat, namerepeat + 1);
+						for (int delay = 0 ; delay < userdefineddelay ; delay++)
+						{
+						}
+
+						c.drawString (nameletters, xname, ystandard);
+						xname = xname + ((size / (size / 5)) * (size / 8));
+					}
+
+					if (recolour == 2)
+					{
+						c.clear ();
+
+						ystandard = ystandard + (size / 2) * 3;
+					}
+					else if (recolour == 4)
+					{
+						c.clear ();
+						ystandard = ystandard - ((size / 2) * 3);
+					}
+					else if (recolour == 6)
+					{
+						c.clear ();
+						ystandard = ystandard - ((size / 2) * 3);
+					}
+					else if (recolour == 9)
+					{
+						c.clear ();
+						ystandard = ystandard + ((size / 2) * 3);
+					}
+				}
+				ystandard = consoleheight / 2;
+			}
+
+			//Exits program when selected
+			else if (choice == 8)
+			{
+				System.exit (0);
+			}
+
+
+			else
+			{
+				c.drawString ("Error: Invalid Option Selected", ((consolewidth - (30 * 9)) / 2), ystandard);
+			}
+
+			c.setColor (customtext);
+			c.setFont (Reset);
+			c.drawString ("Press <ENTER> to return to menu", consolewidth - 230, consoleheight - 20);
+			c.setCursorVisible (false);
+			char menu = c.readChar ();
+			c.setCursorVisible (true);
+			c.clear ();
+
+		}
+
+	}
+
+}
